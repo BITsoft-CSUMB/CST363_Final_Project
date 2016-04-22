@@ -1,6 +1,18 @@
 -- Echo back the responses from the following commands.
 set echo on
+
 -- ADD EMPLOYEE DATA --
+TRUNCATE TABLE employee;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE employee_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE employee_seq;
 INSERT INTO employee (address, name, phone)
 VALUES ('1 Hacker Way, Menlo Park, CA 94025', 'Brittany Mazza', '6505434800');
 INSERT INTO employee (address, name, phone)
@@ -9,7 +21,19 @@ INSERT INTO employee (address, name, phone)
 VALUES ('3500 Deer Creek Road, Palo Alto, CA 94304', 'Matthew Valancy', '6506815100');
 INSERT INTO employee (address, name, phone)
 VALUES ('4040 Civic Center Dr # 300, San Rafael, CA 94903', 'Ashley Wallace', '4154990616');
+
 -- ADD CUSTOMER DATA --
+TRUNCATE TABLE customer;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE customer_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE customer_seq;
 INSERT INTO customer (address, name, phone)
 VALUES ('Noah Smith', '25898 Alabama Ct , Campbell CA 95008', '6505679664');
 INSERT INTO customer (address, name, phone)
@@ -120,7 +144,19 @@ INSERT INTO customer (address, name, phone)
 VALUES ('Isaac Reed', '21863 Virgin Islands Blvd, Palo Alto CA 94301', '6506541041');
 INSERT INTO customer (address, name, phone)
 VALUES ('Samantha Cook', '1970 Midway St, San Jose CA 95150', '6503322518');
+
 -- ADD VENDOR DATA --
+TRUNCATE TABLE vendor;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE vendor_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE vendor_seq;
 INSERT INTO vendor (name , address)
 VALUES ('Fish Food Supplier', '1063 Montgomery Ave, San Bruno, CA 94066');
 INSERT INTO vendor (name , address)
@@ -133,12 +169,47 @@ INSERT INTO vendor (name , address)
 VALUES ('Pan Ocean Aquarium', '2420 Camino Ramon #125, San Ramon, CA 94583');
 INSERT INTO vendor (name , address)
 VALUES ('A n M Aquatics', '601 California St, San Francisco, CA 94108');
+
 -- ADD PRODUCT CATEGORY DATA --
-INSERT INTO product_category (name, quantity)
-VALUES ('fish', 5);
-INSERT INTO product_category (name, quantity)
-VALUES ('fish food', 100);
+TRUNCATE TABLE product_category;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE category_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE category_seq;
+INSERT INTO product_category (name)
+VALUES ('fish'); --- fish, snails, frogs, shrimps
+INSERT INTO product_category (name)
+VALUES ('pet food'); --- frozen/dry fish food
+INSERT INTO product_category (name)
+VALUES ('tanks'); --- tanks, stands
+INSERT INTO product_category (name)
+VALUES ('tank accesories'); --- heaters, bubblers, filters, filter media/refills, pumps, tubing, lights 
+INSERT INTO product_category (name)
+VALUES ('care items'); --- nets, chemicals, scrubbers, 
+INSERT INTO product_category (name)
+VALUES ('decorations'); -- gravel, rocks, wood, sculptures, plastic plants, tank backgrounds
+INSERT INTO product_category (name)
+VALUES ('plants');
+
+
 -- ADD PRODUCT DATA --
+TRUNCATE TABLE product;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE product_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE product_seq;
 INSERT INTO product  (name, description, unit_price, vendor_id, category_id)
 VALUES (
   'Beta',
@@ -202,12 +273,16 @@ VALUES (
   12.99,
   1,
   2);
+
 -- ADD INVENTORY LOCATION DATA --
+TRUNCATE TABLE inventory_location;
 INSERT INTO inventory_location (quantity, product_id)
 VALUES (10, 1);
 INSERT INTO inventory_location (quantity, product_id)
 VALUES (100, 9); 
+
 -- ADD TANK LOG DATA --
+TRUNCATE TABLE tank_log;
 INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
 VALUES (1, SYSDATE, 80, 8, 5, 0, 0);
 INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
@@ -220,7 +295,19 @@ INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite
 VALUES (1, SYSDATE-4, 80, 8.4, 5, 0, 0);
 INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
 VALUES (1, SYSDATE-5, 81, 8.2, 7, 0, 0);
+
 -- ADD SALES ORDER DATA --
+TRUNCATE TABLE sales_order;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE sales_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE sales_seq;
 INSERT INTO sales_order (so_date, customer_id, sales_rep_id)
 VALUES (TO_DATE('1/1/2016', 'mm/dd/yyyy'), 1, 1);
 INSERT INTO sales_order (so_date, customer_id, sales_rep_id)
@@ -425,23 +512,657 @@ INSERT INTO sales_order (so_date, customer_id, sales_rep_id)
 VALUES (TO_DATE('04/20/2016', 'mm/dd/yyyy'), '5', '1');
 INSERT INTO sales_order (so_date, customer_id, sales_rep_id)
 VALUES (TO_DATE('01/23/2016', 'mm/dd/yyyy'), '13', '4');
+
 -- ADD SALES ORDER LINE DATA --
+TRUNCATE TABLE so_line;
 INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
-VALUES (1, 1, 0.50, 3, 1);
+VALUES (1, 1, 0.50, 9, 2);
 INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
-VALUES (1, 2, 0.50, 2, 2);
+VALUES (1, 2, 8.20, 1, 7);
 INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
-VALUES (1, 3, 5, 10, 3);
+VALUES (2, 1, 3.00, 8, 4);
 INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
-VALUES (1, 4, 3, 2, 4);
+VALUES (2, 2, 0.50, 3, 1);
 INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
-VALUES (2, 1, 3, 5, 1);
+VALUES (2, 3, 5.00, 1, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (2, 4, 16.99, 4, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (2, 5, 0.50, 4, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (3, 1, 0.50, 9, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (4, 1, 3.00, 8, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (4, 2, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (4, 3, 8.20, 8, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (5, 1, 12.99, 10, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (5, 2, 16.99, 7, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (5, 3, 0.50, 6, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (5, 4, 5.00, 10, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (6, 1, 0.50, 2, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (6, 2, 12.99, 8, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (6, 3, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (6, 4, 0.50, 1, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (6, 5, 5.00, 9, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (7, 1, 12.99, 9, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (7, 2, 0.50, 7, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (7, 3, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (7, 4, 3.00, 2, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (7, 5, 2.50, 5, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (8, 1, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (8, 2, 3.00, 2, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (8, 3, 3.29, 7, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (9, 1, 0.50, 6, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (9, 2, 0.50, 8, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (10, 1, 0.50, 9, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (10, 2, 12.99, 8, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (11, 1, 3.00, 8, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (11, 2, 3.29, 8, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (11, 3, 16.99, 9, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (12, 1, 3.29, 3, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (12, 2, 8.20, 6, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (12, 3, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (12, 4, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (12, 5, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (13, 1, 3.29, 10, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (13, 2, 2.50, 2, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (13, 3, 0.50, 3, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (13, 4, 8.20, 6, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (13, 5, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (14, 1, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (14, 2, 8.20, 7, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (15, 1, 8.20, 3, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (15, 2, 5.00, 9, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (15, 3, 12.99, 10, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (15, 4, 3.00, 1, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (16, 1, 0.50, 5, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (16, 2, 5.00, 9, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (16, 3, 16.99, 5, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (16, 4, 3.29, 6, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (17, 1, 3.00, 4, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (18, 1, 8.20, 10, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (18, 2, 0.50, 2, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (19, 1, 0.50, 2, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (19, 2, 3.29, 3, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (19, 3, 8.20, 5, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (20, 1, 8.20, 10, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (20, 2, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (21, 1, 3.00, 7, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (21, 2, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (21, 3, 0.50, 2, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (22, 1, 2.50, 9, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (22, 2, 12.99, 8, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (22, 3, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (22, 4, 3.29, 9, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (22, 5, 8.20, 4, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (23, 1, 16.99, 10, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (23, 2, 5.00, 3, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (24, 1, 3.29, 1, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (24, 2, 5.00, 2, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (25, 1, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (25, 2, 2.50, 10, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (25, 3, 8.20, 10, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (25, 4, 3.00, 7, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (26, 1, 0.50, 9, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (27, 1, 12.99, 5, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (27, 2, 5.00, 8, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (27, 3, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (28, 1, 5.00, 5, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (28, 2, 0.50, 5, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (28, 3, 3.29, 8, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (28, 4, 8.20, 2, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (28, 5, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (29, 1, 2.50, 3, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (29, 2, 0.50, 3, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (29, 3, 5.00, 4, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (30, 1, 0.50, 5, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (30, 2, 3.00, 9, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (31, 1, 12.99, 8, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (31, 2, 0.50, 7, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (31, 3, 3.29, 5, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (31, 4, 5.00, 1, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (32, 1, 16.99, 10, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (32, 2, 12.99, 2, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (33, 1, 3.00, 6, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (33, 2, 8.20, 8, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (33, 3, 12.99, 10, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (33, 4, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (34, 1, 3.29, 8, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (34, 2, 16.99, 9, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (34, 3, 12.99, 6, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (35, 1, 2.50, 5, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (35, 2, 3.29, 9, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (35, 3, 0.50, 10, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (35, 4, 8.20, 6, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (36, 1, 16.99, 8, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (36, 2, 5.00, 10, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (36, 3, 12.99, 1, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (36, 4, 3.29, 10, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (36, 5, 0.50, 1, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (37, 1, 2.50, 4, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (38, 1, 3.29, 1, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (38, 2, 2.50, 7, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (38, 3, 3.00, 5, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (38, 4, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (39, 1, 16.99, 4, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (39, 2, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (39, 3, 2.50, 4, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (39, 4, 3.29, 3, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (40, 1, 8.20, 8, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (40, 2, 2.50, 2, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (40, 3, 12.99, 8, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (40, 4, 0.50, 7, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (41, 1, 3.00, 2, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (41, 2, 16.99, 1, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (41, 3, 8.20, 1, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (41, 4, 12.99, 1, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (42, 1, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (42, 2, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (42, 3, 2.50, 7, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (42, 4, 3.00, 9, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (42, 5, 0.50, 4, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (43, 1, 2.50, 3, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (43, 2, 12.99, 10, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (44, 1, 3.29, 7, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (44, 2, 0.50, 5, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (45, 1, 5.00, 3, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (45, 2, 8.20, 2, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (45, 3, 12.99, 6, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (46, 1, 0.50, 4, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (46, 2, 16.99, 1, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (46, 3, 3.00, 1, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (47, 1, 0.50, 5, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (47, 2, 3.29, 3, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (47, 3, 0.50, 4, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (47, 4, 5.00, 4, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (48, 1, 3.29, 2, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (49, 1, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (49, 2, 3.29, 2, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (49, 3, 0.50, 4, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (49, 4, 2.50, 1, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (49, 5, 0.50, 7, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (50, 1, 3.29, 1, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (51, 1, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (51, 2, 5.00, 1, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (51, 3, 16.99, 1, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (51, 4, 0.50, 8, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (51, 5, 3.00, 6, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (52, 1, 3.29, 8, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (52, 2, 0.50, 4, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (52, 3, 2.50, 2, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (53, 1, 16.99, 9, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (53, 2, 2.50, 1, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (53, 3, 8.20, 9, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (53, 4, 12.99, 10, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (53, 5, 3.29, 3, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (54, 1, 8.20, 10, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (54, 2, 5.00, 9, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (55, 1, 3.29, 2, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (55, 2, 12.99, 4, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (55, 3, 2.50, 1, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (55, 4, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (56, 1, 0.50, 7, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (56, 2, 3.00, 3, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (56, 3, 12.99, 9, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (56, 4, 5.00, 6, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (57, 1, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (58, 1, 3.00, 5, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (58, 2, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (58, 3, 0.50, 3, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (58, 4, 12.99, 9, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (58, 5, 5.00, 8, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (59, 1, 5.00, 5, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (60, 1, 8.20, 9, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (60, 2, 3.29, 3, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (60, 3, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (61, 1, 8.20, 5, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (61, 2, 5.00, 5, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (61, 3, 0.50, 1, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (61, 4, 0.50, 2, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (61, 5, 3.00, 6, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (62, 1, 12.99, 4, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (62, 2, 16.99, 10, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (63, 1, 0.50, 6, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (63, 2, 8.20, 6, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (63, 3, 3.00, 7, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (63, 4, 3.29, 1, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (63, 5, 5.00, 1, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (64, 1, 3.00, 4, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (64, 2, 12.99, 5, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (64, 3, 0.50, 9, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (64, 4, 0.50, 5, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (65, 1, 8.20, 2, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (65, 2, 12.99, 3, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (65, 3, 16.99, 5, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (65, 4, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (66, 1, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (66, 2, 12.99, 4, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (67, 1, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (67, 2, 5.00, 4, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (68, 1, 2.50, 4, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (68, 2, 3.00, 3, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (68, 3, 12.99, 6, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (69, 1, 16.99, 7, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (69, 2, 0.50, 7, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (70, 1, 0.50, 8, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (70, 2, 0.50, 9, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (70, 3, 12.99, 9, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (70, 4, 16.99, 5, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (70, 5, 3.00, 10, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (71, 1, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (71, 2, 3.29, 5, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (71, 3, 0.50, 3, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (72, 1, 2.50, 4, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (72, 2, 0.50, 6, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (73, 1, 16.99, 10, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (73, 2, 3.00, 3, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (74, 1, 12.99, 3, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (74, 2, 8.20, 2, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (74, 3, 3.00, 5, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (74, 4, 3.29, 4, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (75, 1, 0.50, 10, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (75, 2, 16.99, 5, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (75, 3, 3.00, 4, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (75, 4, 12.99, 9, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (75, 5, 8.20, 6, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (76, 1, 3.29, 6, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (76, 2, 8.20, 9, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (77, 1, 12.99, 5, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (77, 2, 3.00, 3, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (77, 3, 0.50, 8, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (78, 1, 8.20, 10, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (78, 2, 5.00, 6, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (79, 1, 3.29, 10, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (80, 1, 0.50, 8, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (80, 2, 5.00, 1, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (80, 3, 3.00, 7, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (80, 4, 8.20, 8, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (80, 5, 3.29, 2, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (81, 1, 3.29, 5, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (81, 2, 5.00, 7, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (81, 3, 3.00, 4, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (81, 4, 2.50, 3, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (81, 5, 8.20, 9, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (82, 1, 0.50, 2, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (82, 2, 12.99, 1, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (82, 3, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (83, 1, 5.00, 2, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (83, 2, 12.99, 8, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (83, 3, 3.29, 1, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (83, 4, 16.99, 1, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (83, 5, 8.20, 7, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (84, 1, 3.29, 8, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (84, 2, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (84, 3, 16.99, 4, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (85, 1, 3.00, 9, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (86, 1, 0.50, 9, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (86, 2, 0.50, 3, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (86, 3, 16.99, 9, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (86, 4, 2.50, 6, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (86, 5, 3.29, 7, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (87, 1, 5.00, 5, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (88, 1, 2.50, 3, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (88, 2, 12.99, 5, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (88, 3, 16.99, 3, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (89, 1, 16.99, 2, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (89, 2, 0.50, 8, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (89, 3, 0.50, 2, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (90, 1, 0.50, 10, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (90, 2, 3.00, 6, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (90, 3, 12.99, 4, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (90, 4, 0.50, 2, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (90, 5, 8.20, 9, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (91, 1, 0.50, 4, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (92, 1, 0.50, 2, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (92, 2, 3.29, 2, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (93, 1, 8.20, 7, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (94, 1, 8.20, 8, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (94, 2, 16.99, 5, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (94, 3, 2.50, 5, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (94, 4, 0.50, 9, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (94, 5, 3.00, 6, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (95, 1, 8.20, 1, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (95, 2, 0.50, 2, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (95, 3, 5.00, 4, 3);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (95, 4, 3.00, 7, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (95, 5, 2.50, 7, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (96, 1, 12.99, 2, 9);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (96, 2, 3.29, 10, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (97, 1, 3.00, 3, 4);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (97, 2, 16.99, 4, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (98, 1, 0.50, 4, 1);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (98, 2, 0.50, 6, 2);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (98, 3, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (99, 1, 16.99, 6, 6);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (99, 2, 3.29, 5, 8);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (100, 1, 2.50, 5, 5);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (100, 2, 8.20, 2, 7);
+INSERT INTO so_line (so_num, line_num, unit_price, quantity, product_id)
+VALUES (100, 3, 12.99, 2, 9);
+
 -- ADD PRODUCT ORDER DATA --
+TRUNCATE TABLE product_order;
+BEGIN
+  EXECUTE IMMEDIATE 'DROP SEQUENCE purchase_seq';
+EXCEPTION
+  WHEN OTHERS THEN
+    IF SQLCODE != -2289 THEN
+      RAISE;
+    END IF;
+END;
+/
+CREATE SEQUENCE purchase_seq;
 INSERT INTO product_order (po_date, vendor_id, entered_by)
 VALUES (TO_DATE('1/1/2016','mm/dd/yyyy'), 1, 1);
 INSERT INTO product_order (po_date, vendor_id, entered_by)
 VALUES (TO_DATE('3/29/2016','mm/dd/yyyy'), 6, 2);
+
 -- ADD PRODUCT ORDER LINE DATA --
+TRUNCATE TABLE po_line;
 INSERT INTO po_line (po_num, line_num, quantity, product_id)
 VALUES (1, 1, 3, 1);
 INSERT INTO po_line (po_num, line_num, quantity, product_id)

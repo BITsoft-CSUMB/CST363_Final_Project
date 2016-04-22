@@ -256,8 +256,8 @@ CREATE TRIGGER employee_trg
   FOR EACH ROW
   begin
     SELECT employee_seq.nextval
-  INTO :new.employee_id
-  FROM dual;
+	INTO :new.employee_id
+	FROM dual;
   end;
   /
 CREATE TABLE customer (
@@ -271,8 +271,8 @@ CREATE TRIGGER customer_trg
   FOR EACH ROW
   begin
     SELECT customer_seq.nextval
-  INTO :new.customer_id
-  FROM dual;
+	INTO :new.customer_id
+	FROM dual;
   end;
   /
 CREATE TABLE vendor (
@@ -285,22 +285,21 @@ CREATE TRIGGER vendor_trg
   FOR EACH ROW
   begin
     SELECT vendor_seq.nextval
-  INTO :new.vendor_id
-  FROM dual;
+	INTO :new.vendor_id
+	FROM dual;
   end;
   /
 CREATE TABLE product_category (
   category_id NUMBER(10) NOT NULL PRIMARY KEY,
-  name VARCHAR2(50),
-  quantity NUMBER(5));
+  name VARCHAR2(50));
 CREATE SEQUENCE category_seq;
 CREATE TRIGGER category_trg
   BEFORE INSERT ON product_category
   FOR EACH ROW
   begin
     SELECT category_seq.nextval
-  INTO :new.category_id
-  FROM dual;
+	INTO :new.category_id
+	FROM dual;
   end;
   /
 CREATE TABLE product (
@@ -316,8 +315,8 @@ CREATE TRIGGER product_trg
   FOR EACH ROW
   begin
     SELECT product_seq.nextval
-  INTO :new.product_id
-  FROM dual;
+	INTO :new.product_id
+	FROM dual;
   end;
   /
 CREATE TABLE inventory_location (
@@ -330,8 +329,8 @@ CREATE TRIGGER location_trg
   FOR EACH ROW
   begin
     SELECT location_seq.nextval
-  INTO :new.location_id
-  FROM dual;
+	INTO :new.location_id
+	FROM dual;
   end;
   /
 CREATE TABLE tank_log (
@@ -354,8 +353,8 @@ CREATE TRIGGER sales_trg
   FOR EACH ROW
   begin
     SELECT sales_seq.nextval
-  INTO :new.so_num
-  FROM dual;
+	INTO :new.so_num
+	FROM dual;
   end;
   /
 CREATE TABLE so_line (
@@ -376,8 +375,8 @@ CREATE TRIGGER purchase_trg
   FOR EACH ROW
   begin
     SELECT purchase_seq.nextval
-  INTO :new.po_num
-  FROM dual;
+	INTO :new.po_num
+	FROM dual;
   end;
   /
 CREATE TABLE po_line (
