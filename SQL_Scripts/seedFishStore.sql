@@ -183,19 +183,19 @@ END;
 /
 CREATE SEQUENCE category_seq;
 INSERT INTO product_category (name)
-VALUES ('fish'); --- fish, snails, frogs, shrimps
+VALUES ('fish'); 
 INSERT INTO product_category (name)
-VALUES ('pet food'); --- frozen/dry fish food
+VALUES ('pet food'); 
 INSERT INTO product_category (name)
-VALUES ('tanks'); --- tanks, stands
+VALUES ('tanks'); 
 INSERT INTO product_category (name)
-VALUES ('tank accesories'); --- heaters, bubblers, filters, filter media/refills, pumps, tubing, lights 
+VALUES ('tank accesories');
 INSERT INTO product_category (name)
-VALUES ('care items'); --- nets, chemicals, scrubbers, 
+VALUES ('care items'); 
 INSERT INTO product_category (name)
-VALUES ('decorations'); -- gravel, rocks, wood, sculptures, plastic plants, tank backgrounds
+VALUES ('decorations'); 
 INSERT INTO product_category (name)
-VALUES ('plants');
+VALUES ('plants'); 
 
 
 -- ADD PRODUCT DATA --
