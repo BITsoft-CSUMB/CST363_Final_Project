@@ -256,8 +256,8 @@ CREATE TRIGGER employee_trg
   FOR EACH ROW
   begin
     SELECT employee_seq.nextval
-	INTO :new.employee_id
-	FROM dual;
+  INTO :new.employee_id
+  FROM dual;
   end;
   /
 CREATE TABLE customer (
@@ -271,8 +271,8 @@ CREATE TRIGGER customer_trg
   FOR EACH ROW
   begin
     SELECT customer_seq.nextval
-	INTO :new.customer_id
-	FROM dual;
+  INTO :new.customer_id
+  FROM dual;
   end;
   /
 CREATE TABLE vendor (
@@ -285,8 +285,8 @@ CREATE TRIGGER vendor_trg
   FOR EACH ROW
   begin
     SELECT vendor_seq.nextval
-	INTO :new.vendor_id
-	FROM dual;
+  INTO :new.vendor_id
+  FROM dual;
   end;
   /
 CREATE TABLE product_category (
@@ -299,8 +299,8 @@ CREATE TRIGGER category_trg
   FOR EACH ROW
   begin
     SELECT category_seq.nextval
-	INTO :new.category_id
-	FROM dual;
+  INTO :new.category_id
+  FROM dual;
   end;
   /
 CREATE TABLE product (
@@ -316,8 +316,8 @@ CREATE TRIGGER product_trg
   FOR EACH ROW
   begin
     SELECT product_seq.nextval
-	INTO :new.product_id
-	FROM dual;
+  INTO :new.product_id
+  FROM dual;
   end;
   /
 CREATE TABLE inventory_location (
@@ -330,8 +330,8 @@ CREATE TRIGGER location_trg
   FOR EACH ROW
   begin
     SELECT location_seq.nextval
-	INTO :new.location_id
-	FROM dual;
+  INTO :new.location_id
+  FROM dual;
   end;
   /
 CREATE TABLE tank_log (
@@ -340,6 +340,7 @@ CREATE TABLE tank_log (
   temperature NUMBER(3),
   ph NUMBER(2),
   nitrate NUMBER(3),
+  nitrite NUMBER(2),
   ammonia NUMBER(2),
   CONSTRAINT pk_tank_log PRIMARY KEY (location_id, read_date));
 CREATE TABLE sales_order (
@@ -353,8 +354,8 @@ CREATE TRIGGER sales_trg
   FOR EACH ROW
   begin
     SELECT sales_seq.nextval
-	INTO :new.so_num
-	FROM dual;
+  INTO :new.so_num
+  FROM dual;
   end;
   /
 CREATE TABLE so_line (
@@ -375,8 +376,8 @@ CREATE TRIGGER purchase_trg
   FOR EACH ROW
   begin
     SELECT purchase_seq.nextval
-	INTO :new.po_num
-	FROM dual;
+  INTO :new.po_num
+  FROM dual;
   end;
   /
 CREATE TABLE po_line (
