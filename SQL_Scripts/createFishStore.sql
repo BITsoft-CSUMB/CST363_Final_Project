@@ -336,11 +336,11 @@ CREATE TRIGGER location_trg
 CREATE TABLE tank_log (
   location_id NUMBER(10) NOT NULL REFERENCES inventory_location(location_id),
   read_date DATE,
-  temperature NUMBER(3),
-  ph NUMBER(2),
-  nitrate NUMBER(3),
-  nitrite NUMBER(2),
-  ammonia NUMBER(2),
+  temperature NUMBER(5,2),
+  ph NUMBER(3,1),
+  nitrate NUMBER(4,2),
+  nitrite NUMBER(3,2),
+  ammonia NUMBER(3,2),
   CONSTRAINT pk_tank_log PRIMARY KEY (location_id, read_date));
 CREATE TABLE sales_order (
   so_num NUMBER(10) NOT NULL PRIMARY KEY,
