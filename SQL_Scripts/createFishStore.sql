@@ -262,8 +262,12 @@ CREATE TRIGGER employee_trg
   /
 CREATE TABLE customer (
   customer_id NUMBER(10) NOT NULL PRIMARY KEY,
+  fname VARCHAR2(50),
+  lname VARCHAR2(50),
   address VARCHAR2(100),
-  name VARCHAR2(50),
+  city VARCHAR2(25),
+  state CHAR(2),
+  zip CHAR (5),
   phone VARCHAR2(10));
 CREATE SEQUENCE customer_seq;
 CREATE TRIGGER customer_trg

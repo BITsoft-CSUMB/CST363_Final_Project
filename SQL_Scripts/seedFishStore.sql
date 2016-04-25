@@ -34,116 +34,116 @@ EXCEPTION
 END;
 /
 CREATE SEQUENCE customer_seq;
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Noah', 'Smith', '25898 Alabama Ct' , 'Campbell', 'CA', '95008', '6505679664');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Liam', 'Johnson', '38180 Alaska Dr', 'Cupertino', 'CA', '95014', '6501041765');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Jacob', 'Williams', '28002 Arizona Cir', 'Gilroy', 'CA', '95020', '6507197782');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Mason', 'Jones', '96268 Arkansas Blvd', 'Los Altos', 'CA', '94022', '6506792368');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('William', 'Brown', '40549 California St', 'Milpitas', 'CA', '95035', '6502696081');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Ethan', 'Davis', '27999 Colorado Ct', 'Monte Sereno', 'CA', '95030', '6501556933');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Michael', 'Miller', '11593 Connecticut Dr', 'Morgan Hill', 'CA', '95037', '6505489571');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Alexander', 'Wilson', '69920 Delaware Cir', 'Mountain View', 'CA', '94035', '6506419696');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Jayden', 'Moore', '7387 Florida Blvd', 'Palo Alto', 'CA', '94301', '6508014048');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Daniel', 'Taylor', '14660 Georgia St', 'San Jose', 'CA', '95150', '6502256364');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Elijah', 'Anderson', '53847 Hawaii Ct', 'Santa Clara', 'CA', '95050', '6506695316');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Aiden', 'Thomas', '45870 Idaho Dr', 'Saratoga', 'CA', '95070', '6507708345');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('James', 'Jackson', '33428 Illinois Cir', 'Sunnyvale', 'CA', '94085', '6502613433');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Benjamin', 'White', '99496 Indiana Blvd', 'Los Gatos', 'CA', '95033', '6508496084');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Matthew', 'Harris', '71126 Iowa St', 'Los Altos Hills', 'CA', '94022', '6504843958');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Emma', 'Martin', '99610 Kansas Ct', 'Campbell', 'CA', '95008', '6509979209');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Olivia', 'Thompson', '97473 Kentucky Dr', 'Cupertino', 'CA', '95014', '6502856107');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Isabella', 'Garcia', '39767 Louisiana Cir', 'Gilroy', 'CA', '95020', '6508213684');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Ava', 'Martinez', '99342 Maine Blvd', 'Los Altos', 'CA', '94022', '6503409231');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Mia', 'Robinson', '28193 Maryland St', 'Milpitas', 'CA', '95035', '6502846913');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Emily', 'Clark', '12160 Massachusetts Ct', 'Monte Sereno', 'CA', '95030', '6508906597');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Abigail', 'Rodriguez', '37772 Michigan Dr', 'Morgan Hill', 'CA', '95037', '6502602128');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Madison', 'Lewis', '79415 Minnesota Cir', 'Mountain View', 'CA', '94035', '6501208682');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Elizabeth', 'Lee', '35764 Mississippi Blvd', 'Palo Alto', 'CA', '94301', '6504261594');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Charlotte', 'Walker', '2638 Missouri St', 'San Jose', 'CA', '95150', '6501114107');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Avery', 'Hall', '48930 Montana Ct', 'Santa Clara', 'CA', '95050', '6504766290');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Sofia', 'Allen', '31927 Nebraska Dr', 'Saratoga', 'CA', '95070', '6506971127');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Chloe', 'Hernandez', '36642 Nevada Cir', 'Sunnyvale', 'CA', '94085', '6508062863');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Ella', 'King', '47419 New Hampshire Blvd', 'Los Gatos', 'CA', '95033', '6503428401');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Logan', 'Wright', '10426 New Jersey St', 'Los Altos Hills', 'CA', '94022', '6502503260');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Ameila', 'Lopez', '75361 New Mexico Ct', 'Campbell', 'CA', '95008', '6508931654');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('David', 'Hill', '1573 New York Dr', 'Cupertino', 'CA', '95014', '6508077610');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Aubrey', 'Scott', '58067 North Carolina Cir', 'Gilroy', 'CA', '95020', '6509386512');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Anthony', 'Green', '99226 North Dakota Blvd', 'Los Altos', 'CA', '94022', '6501124111');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Addison', 'Adams', '24020 Ohio St', 'Milpitas', 'CA', '95035', '6503536332');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Joseph', 'Baker', '90287 Oklahoma Ct', 'Monte Sereno', 'CA', '95030', '6507041441');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Evelyn', 'Gonzolex', '30519 Oregon Dr', 'Morgan Hill', 'CA', '95037', '6501685658');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Joshua', 'Nelson', '69453 Pennsylvania Cir', 'Mountain View', 'CA', '94035', '6509661810');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Natalie', 'Carter', '70883 Rhode Island Blvd', 'Palo Alto', 'CA', '94301', '6508369290');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Andrew', 'Mitchell', '20051 South Carolina St', 'San Jose', 'CA', '95150', '6505899673');
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
+VALUES ('Grace', 'Perez', '81419 South Dakota Ct', 'Santa Clara', 'CA', '95050', '6505395790');
 INSERT INTO customer (address, name, phone)
-VALUES ('Noah Smith', '25898 Alabama Ct , Campbell CA 95008', '6505679664');
+VALUES ('Lucas', 'Roberts', '31055 Tennessee Dr', 'Saratoga', 'CA', '95070', '6504479376');
 INSERT INTO customer (address, name, phone)
-VALUES ('Liam Johnson', '38180 Alaska Dr, Cupertino CA 95014', '6501041765');
+VALUES ('Hannah', 'Turner', '50310 Texas Cir', 'Sunnyvale', 'CA', '94085', '6505302322');
 INSERT INTO customer (address, name, phone)
-VALUES ('Jacob Williams', '28002 Arizona Cir, Gilroy CA 95020', '6507197782');
+VALUES ('Gabriel', 'Phillips', '68404 Utah Blvd', 'Los Gatos', 'CA', '95033', '6503382529');
 INSERT INTO customer (address, name, phone)
-VALUES ('Mason Jones', '96268 Arkansas Blvd, Los Altos CA 94022', '6506792368');
+VALUES ('Zoe', 'Campbell', '82544 Vermont St', 'Los Altos Hills', 'CA', '94022', '6509306734');
 INSERT INTO customer (address, name, phone)
-VALUES ('William Brown', '40549 California St, Milpitas CA 95035', '6502696081');
+VALUES ('Samuel', 'Parker', '44179 Virginia Ct', 'Campbell', 'CA', '95008', '6501495726');
 INSERT INTO customer (address, name, phone)
-VALUES ('Ethan Davis', '27999 Colorado Ct , Monte Sereno CA 95030', '6501556933');
+VALUES ('Victoria', 'Evans', '13456 Washington Dr', 'Cupertino', 'CA', '95014', '6504551723');
 INSERT INTO customer (address, name, phone)
-VALUES ('Michael Miller', '11593 Connecticut Dr, Morgan Hill CA 95037', '6505489571');
+VALUES ('Christopher', 'Edwards', '57796 West Virginia Cir', 'Gilroy', 'CA', '95020', '6508028951');
 INSERT INTO customer (address, name, phone)
-VALUES ('Alexander Wilson', '69920 Delaware Cir, Mountain View CA 94035', '6506419696');
+VALUES ('Lillian', 'Collins', '92619 Wisconsin Blvd', 'Los Altos', 'CA', '94022', '6505248333');
 INSERT INTO customer (address, name, phone)
-VALUES ('Jayden Moore', '7387 Florida Blvd, Palo Alto CA 94301', '6508014048');
+VALUES ('John', 'Stewart', '76070 Wyoming St', 'Milpitas', 'CA', '95035', '6506013533');
 INSERT INTO customer (address, name, phone)
-VALUES ('Daniel Taylor', '14660 Georgia St, San Jose CA 95150', '6502256364');
+VALUES ('Lily', 'Sanchez', '70502 Puerto Rico Ct', 'Monte Sereno', 'CA', '95030', '6501729459');
 INSERT INTO customer (address, name, phone)
-VALUES ('Elijah Anderson', '53847 Hawaii Ct , Santa Clara CA 95050', '6506695316');
+VALUES ('Dylan', 'Morris', '66481 Guam Dr', 'Morgan Hill', 'CA', '95037', '6509854539');
 INSERT INTO customer (address, name, phone)
-VALUES ('Aiden Thomas', '45870 Idaho Dr, Saratoga CA 95070', '6507708345');
+VALUES ('Brooklyn', 'Rogers', '58555 Simoa Cir', 'Mountain View', 'CA', '94035', '6501878479');
 INSERT INTO customer (address, name, phone)
-VALUES ('James Jackson', '33428 Illinois Cir, Sunnyvale CA 94085', '6502613433');
+VALUES ('Isaac', 'Reed', '21863 Virgin Islands Blvd', 'Palo Alto', 'CA', '94301', '6506541041');
 INSERT INTO customer (address, name, phone)
-VALUES ('Benjamin White', '99496 Indiana Blvd, Los Gatos CA 95033', '6508496084');
-INSERT INTO customer (address, name, phone)
-VALUES ('Matthew Harris', '71126 Iowa St, Los Altos Hills CA 94022', '6504843958');
-INSERT INTO customer (address, name, phone)
-VALUES ('Emma Martin', '99610 Kansas Ct , Campbell CA 95008', '6509979209');
-INSERT INTO customer (address, name, phone)
-VALUES ('Olivia Thompson', '97473 Kentucky Dr, Cupertino CA 95014', '6502856107');
-INSERT INTO customer (address, name, phone)
-VALUES ('Isabella Garcia', '39767 Louisiana Cir, Gilroy CA 95020', '6508213684');
-INSERT INTO customer (address, name, phone)
-VALUES ('Ava Martinez', '99342 Maine Blvd, Los Altos CA 94022', '6503409231');
-INSERT INTO customer (address, name, phone)
-VALUES ('Mia Robinson', '28193 Maryland St, Milpitas CA 95035', '6502846913');
-INSERT INTO customer (address, name, phone)
-VALUES ('Emily Clark', '12160 Massachusetts Ct , Monte Sereno CA 95030', '6508906597');
-INSERT INTO customer (address, name, phone)
-VALUES ('Abigail Rodriguez', '37772 Michigan Dr, Morgan Hill CA 95037', '6502602128');
-INSERT INTO customer (address, name, phone)
-VALUES ('Madison Lewis', '79415 Minnesota Cir, Mountain View CA 94035', '6501208682');
-INSERT INTO customer (address, name, phone)
-VALUES ('Elizabeth Lee', '35764 Mississippi Blvd, Palo Alto CA 94301', '6504261594');
-INSERT INTO customer (address, name, phone)
-VALUES ('Charlotte Walker', '2638 Missouri St, San Jose CA 95150', '6501114107');
-INSERT INTO customer (address, name, phone)
-VALUES ('Avery Hall', '48930 Montana Ct , Santa Clara CA 95050', '6504766290');
-INSERT INTO customer (address, name, phone)
-VALUES ('Sofia Allen', '31927 Nebraska Dr, Saratoga CA 95070', '6506971127');
-INSERT INTO customer (address, name, phone)
-VALUES ('Chloe Hernandez', '36642 Nevada Cir, Sunnyvale CA 94085', '6508062863');
-INSERT INTO customer (address, name, phone)
-VALUES ('Ella King', '47419 New Hampshire Blvd, Los Gatos CA 95033', '6503428401');
-INSERT INTO customer (address, name, phone)
-VALUES ('Logan Wright', '10426 New Jersey St, Los Altos Hills CA 94022', '6502503260');
-INSERT INTO customer (address, name, phone)
-VALUES ('Ameila Lopez', '75361 New Mexico Ct , Campbell CA 95008', '6508931654');
-INSERT INTO customer (address, name, phone)
-VALUES ('David Hill', '1573 New York Dr, Cupertino CA 95014', '6508077610');
-INSERT INTO customer (address, name, phone)
-VALUES ('Aubrey Scott', '58067 North Carolina Cir, Gilroy CA 95020', '6509386512');
-INSERT INTO customer (address, name, phone)
-VALUES ('Anthony Green', '99226 North Dakota Blvd, Los Altos CA 94022', '6501124111');
-INSERT INTO customer (address, name, phone)
-VALUES ('Addison Adams', '24020 Ohio St, Milpitas CA 95035', '6503536332');
-INSERT INTO customer (address, name, phone)
-VALUES ('Joseph Baker', '90287 Oklahoma Ct , Monte Sereno CA 95030', '6507041441');
-INSERT INTO customer (address, name, phone)
-VALUES ('Evelyn Gonzolex', '30519 Oregon Dr, Morgan Hill CA 95037', '6501685658');
-INSERT INTO customer (address, name, phone)
-VALUES ('Joshua Nelson', '69453 Pennsylvania Cir, Mountain View CA 94035', '6509661810');
-INSERT INTO customer (address, name, phone)
-VALUES ('Natalie Carter', '70883 Rhode Island Blvd, Palo Alto CA 94301', '6508369290');
-INSERT INTO customer (address, name, phone)
-VALUES ('Andrew Mitchell', '20051 South Carolina St, San Jose CA 95150', '6505899673');
-INSERT INTO customer (address, name, phone)
-VALUES ('Grace Perez', '81419 South Dakota Ct , Santa Clara CA 95050', '6505395790');
-INSERT INTO customer (address, name, phone)
-VALUES ('Lucas Roberts', '31055 Tennessee Dr, Saratoga CA 95070', '6504479376');
-INSERT INTO customer (address, name, phone)
-VALUES ('Hannah Turner', '50310 Texas Cir, Sunnyvale CA 94085', '6505302322');
-INSERT INTO customer (address, name, phone)
-VALUES ('Gabriel Phillips', '68404 Utah Blvd, Los Gatos CA 95033', '6503382529');
-INSERT INTO customer (address, name, phone)
-VALUES ('Zoe Campbell', '82544 Vermont St, Los Altos Hills CA 94022', '6509306734');
-INSERT INTO customer (address, name, phone)
-VALUES ('Samuel Parker', '44179 Virginia Ct , Campbell CA 95008', '6501495726');
-INSERT INTO customer (address, name, phone)
-VALUES ('Victoria Evans', '13456 Washington Dr, Cupertino CA 95014', '6504551723');
-INSERT INTO customer (address, name, phone)
-VALUES ('Christopher Edwards', '57796 West Virginia Cir, Gilroy CA 95020', '6508028951');
-INSERT INTO customer (address, name, phone)
-VALUES ('Lillian Collins', '92619 Wisconsin Blvd, Los Altos CA 94022', '6505248333');
-INSERT INTO customer (address, name, phone)
-VALUES ('John Stewart', '76070 Wyoming St, Milpitas CA 95035', '6506013533');
-INSERT INTO customer (address, name, phone)
-VALUES ('Lily Sanchez', '70502 Puerto Rico Ct , Monte Sereno CA 95030', '6501729459');
-INSERT INTO customer (address, name, phone)
-VALUES ('Dylan Morris', '66481 Guam Dr, Morgan Hill CA 95037', '6509854539');
-INSERT INTO customer (address, name, phone)
-VALUES ('Brooklyn Rogers', '58555 Simoa Cir, Mountain View CA 94035', '6501878479');
-INSERT INTO customer (address, name, phone)
-VALUES ('Isaac Reed', '21863 Virgin Islands Blvd, Palo Alto CA 94301', '6506541041');
-INSERT INTO customer (address, name, phone)
-VALUES ('Samantha Cook', '1970 Midway St, San Jose CA 95150', '6503322518');
+VALUES ('Samantha', 'Cook', '1970 Midway St', 'San Jose', 'CA', '95150', '6503322518');
 
 -- ADD VENDOR DATA --
 TRUNCATE TABLE vendor;
@@ -279,7 +279,11 @@ TRUNCATE TABLE inventory_location;
 INSERT INTO inventory_location (quantity, product_id)
 VALUES (10, 1);
 INSERT INTO inventory_location (quantity, product_id)
-VALUES (100, 9); 
+VALUES (8, 2); 
+INSERT INTO inventory_location (quantity, product_id)
+VALUES (5, 3);
+INSERT INTO inventory_location (quantity, product_id)
+VALUES (10, 4);
 
 -- ADD TANK LOG DATA --
 TRUNCATE TABLE tank_log;
