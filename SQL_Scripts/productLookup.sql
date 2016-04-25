@@ -1,5 +1,6 @@
 set echo off
 set verify off
+set heading off
 
 prompt
 prompt --- Fish Store Product Lookup ---

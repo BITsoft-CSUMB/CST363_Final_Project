@@ -116,33 +116,33 @@ INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Andrew', 'Mitchell', '20051 South Carolina St', 'San Jose', 'CA', '95150', '6505899673');
 INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Grace', 'Perez', '81419 South Dakota Ct', 'Santa Clara', 'CA', '95050', '6505395790');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Lucas', 'Roberts', '31055 Tennessee Dr', 'Saratoga', 'CA', '95070', '6504479376');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Hannah', 'Turner', '50310 Texas Cir', 'Sunnyvale', 'CA', '94085', '6505302322');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Gabriel', 'Phillips', '68404 Utah Blvd', 'Los Gatos', 'CA', '95033', '6503382529');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Zoe', 'Campbell', '82544 Vermont St', 'Los Altos Hills', 'CA', '94022', '6509306734');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Samuel', 'Parker', '44179 Virginia Ct', 'Campbell', 'CA', '95008', '6501495726');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Victoria', 'Evans', '13456 Washington Dr', 'Cupertino', 'CA', '95014', '6504551723');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Christopher', 'Edwards', '57796 West Virginia Cir', 'Gilroy', 'CA', '95020', '6508028951');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Lillian', 'Collins', '92619 Wisconsin Blvd', 'Los Altos', 'CA', '94022', '6505248333');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('John', 'Stewart', '76070 Wyoming St', 'Milpitas', 'CA', '95035', '6506013533');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Lily', 'Sanchez', '70502 Puerto Rico Ct', 'Monte Sereno', 'CA', '95030', '6501729459');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Dylan', 'Morris', '66481 Guam Dr', 'Morgan Hill', 'CA', '95037', '6509854539');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Brooklyn', 'Rogers', '58555 Simoa Cir', 'Mountain View', 'CA', '94035', '6501878479');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Isaac', 'Reed', '21863 Virgin Islands Blvd', 'Palo Alto', 'CA', '94301', '6506541041');
-INSERT INTO customer (address, name, phone)
+INSERT INTO customer (fname, lname, address, city, state, zip, phone)
 VALUES ('Samantha', 'Cook', '1970 Midway St', 'San Jose', 'CA', '95150', '6503322518');
 
 -- ADD VENDOR DATA --
@@ -283,23 +283,58 @@ VALUES (8, 2);
 INSERT INTO inventory_location (quantity, product_id)
 VALUES (5, 3);
 INSERT INTO inventory_location (quantity, product_id)
-VALUES (10, 4);
+VALUES (12, 4);
 
 -- ADD TANK LOG DATA --
 TRUNCATE TABLE tank_log;
 INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
-VALUES (1, SYSDATE, 80, 8, 5, 0, 0);
+VALUES (1, SYSDATE, 80.1, 8, 15, 0, 0);
 INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
 VALUES (1, SYSDATE-1, 80, 8.5, 5, 0, 0);
 INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
-VALUES (1, SYSDATE-2, 78, 8, 4, 0, 0);
+VALUES (1, SYSDATE-2, 74.5, 8, 4.03, 0, 0.1);
 INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
-VALUES (1, SYSDATE-3, 79, 8.2, 6, 0, 0);
+VALUES (1, SYSDATE-3, 70.1, 8.2, 6.01, 0, 0.2);
 INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
-VALUES (1, SYSDATE-4, 80, 8.4, 5, 0, 0);
+VALUES (1, SYSDATE-4, 65, 8.4, 5.02, 0, 0.5);
 INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
-VALUES (1, SYSDATE-5, 81, 8.2, 7, 0, 0);
-
+VALUES (1, SYSDATE-5, 60.2, 8.2, 7, 0, 0.7);
+INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (2, SYSDATE, 80.1, 3, 5, 0, 0);
+INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (2, SYSDATE-1, 80, 8.5, 5, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (2, SYSDATE-2, 78.01, 8, 4.03, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (2, SYSDATE-3, 79.5, 8.2, 6.01, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (2, SYSDATE-4, 80.07, 8.4, 5.02, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (2, SYSDATE-5, 81, 8.2, 7, 0, 0);
+INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (3, SYSDATE,  90, 8, 5, 0.3, 0);
+INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (3, SYSDATE-1, 80, 8.5, 5, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (3, SYSDATE-2, 78.01, 8, 4.03, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (3, SYSDATE-3, 79.5, 8.2, 6.01, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (3, SYSDATE-4, 80.07, 8.4, 5.02, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (3, SYSDATE-5, 81, 8.2, 7, 0, 0);
+INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (4, SYSDATE, 80.1, 8, 5, 0, 0.2);
+INSERT INTO tank_log (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (4, SYSDATE-1, 80, 8.5, 5, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (4, SYSDATE-2, 78.01, 8, 4.03, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (4, SYSDATE-3, 79.5, 8.2, 6.01, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (4, SYSDATE-4, 80.07, 8.4, 5.02, 0, 0);
+INSERT INTO tank_log  (location_id, read_date, temperature, ph, nitrate, nitrite, ammonia)
+VALUES (4, SYSDATE-5, 81, 8.2, 7, 0, 0);
 -- ADD SALES ORDER DATA --
 TRUNCATE TABLE sales_order;
 BEGIN
